@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Brand Base */
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #000000;
+
+    --primary: #D62460;
+    --accent: #F06A8A;
+
+    --grey-light: #C7D1D4;
+    --grey-dark: #4F5A60;
+  }
+
+  .dark {
+    --background: #000000;
+    --foreground: #ffffff;
+  }
+
+  body {
+    @apply bg-[var(--background)] text-[var(--foreground)];
+    font-family: system-ui, sans-serif;
+  }
+}
