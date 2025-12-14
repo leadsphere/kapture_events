@@ -45,7 +45,7 @@ export default function Hero() {
         transition={{ duration: 1 }}
         className="relative z-10 w-full max-w-5xl"
       >
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-10">
+        <div className="flex flex-col gap-10">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-6xl font-bold leading-tight text-white">
               <span>{firstWord}</span>{" "}
@@ -61,7 +61,7 @@ export default function Hero() {
             </p>
           </div>
 
-          <div className="md:self-center">
+          <div>
             <a
               href="/contact"
               className="inline-block px-12 py-4 text-lg font-semibold rounded-xl text-white shadow-[0_10px_25px_rgba(214,36,96,0.4)] transition-all duration-300"

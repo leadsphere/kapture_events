@@ -5,7 +5,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
-import { Toaster } from "@/components/ui/toaster";
 
 export default function Contact() {
   const MAGENTA = "#D62460";
@@ -108,7 +107,7 @@ export default function Contact() {
           variant: "destructive",
         });
       }
-    } catch (err) {
+    } catch {
       toast({
         title: "❌ Network Error",
         description: "Something went wrong. Try again later.",
@@ -121,9 +120,7 @@ export default function Contact() {
 
   return (
     <section className="relative min-h-screen pt-36 px-6 flex justify-center">
-      <Toaster />
-
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(214,36,96,0.12),transparent_70%)]"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(214,36,96,0.12),transparent_70%)]" />
 
       {success ? (
         <motion.div
@@ -183,7 +180,7 @@ export default function Contact() {
                   placeholder="Your Name *"
                   value={form.name}
                   onChange={handleChange}
-                  className="bg-white/70 dark:bg-white/10 text-black dark:text-white"
+                  className="dark:text-black"
                 />
 
                 <Input
@@ -192,7 +189,7 @@ export default function Contact() {
                   placeholder="Email *"
                   value={form.email}
                   onChange={handleChange}
-                  className="bg-white/70 dark:bg-white/10 text-black dark:text-white"
+                  className="dark:text-black"
                 />
 
                 <Input
@@ -200,7 +197,7 @@ export default function Contact() {
                   placeholder="Phone *"
                   value={form.phone}
                   onChange={handleChange}
-                  className="bg-white/70 dark:bg-white/10 text-black dark:text-white"
+                  className="dark:text-black"
                 />
 
                 <Input
@@ -208,13 +205,19 @@ export default function Contact() {
                   placeholder="Company (Optional)"
                   value={form.company}
                   onChange={handleChange}
-                  className="bg-white/70 dark:bg-white/10 text-black dark:text-white"
+                  className="dark:text-black"
                 />
 
+                {/* SERVICES DROPDOWN */}
                 <div className="relative" ref={dropdownRef}>
                   <div
                     onClick={() => setOpenServices(!openServices)}
-                    className="w-full p-3 rounded-lg cursor-pointer bg-white/70 dark:bg-white/10 text-black dark:text-white border border-black"
+                    className="
+                      w-full p-3 rounded-lg cursor-pointer
+                      bg-white/70
+                      text-black
+                      border border-gray-300 dark:border-gray-600
+                    "
                   >
                     {services.length > 0
                       ? services.join(", ")
@@ -222,14 +225,29 @@ export default function Contact() {
                   </div>
 
                   {openServices && (
-                    <div className="absolute mt-2 w-full rounded-xl shadow-xl z-20 bg-white border border-pink-500 p-3 max-h-48 overflow-y-auto">
+                    <div
+                      className="
+                        absolute mt-2 w-full rounded-xl shadow-xl z-20
+                        bg-white dark:bg-[#0f0f0f]
+                        border border-pink-500
+                        p-3 max-h-48 overflow-y-auto
+                      "
+                    >
                       {serviceOptions.map((srv) => (
                         <div
                           key={srv}
-                          className="p-2 rounded-lg cursor-pointer hover:bg-gray-100"
                           onClick={() => toggleService(srv)}
+                          className={`
+                            p-2 rounded-lg cursor-pointer transition
+                            ${
+                              services.includes(srv)
+                                ? "bg-[#D62460] text-white"
+                                : "text-black dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                            }
+                          `}
                         >
-                          {services.includes(srv) ? "✔ " : ""} {srv}
+                          {services.includes(srv) ? "✔ " : ""}
+                          {srv}
                         </div>
                       ))}
                     </div>
@@ -242,7 +260,7 @@ export default function Contact() {
                   placeholder="Your Message *"
                   value={form.message}
                   onChange={handleChange}
-                  className="bg-white/70 dark:bg-white/10 text-black dark:text-white"
+                  className="dark:text-black"
                 />
 
                 <motion.button

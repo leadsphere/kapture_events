@@ -82,21 +82,23 @@ export const SERVICES = [
 
 export const TESTIMONIALS = [
   {
+    name: "Aarav Sharma",
     review:
       "The team delivered exceptional quality. Every moment was beautifully captured with emotion and precision.",
-    name: "Aarav Sharma",
   },
   {
+    name: "Priya Verma",
     review:
       "Exceeded all expectations! Elegant planning, smooth execution, and beautiful cinematic results.",
-    name: "Priya Verma",
   },
   {
+    name: "Rahul Singh",
     review:
       "Professional, creative, and highly reliable. The final output was beyond stunning!",
-    name: "Rahul Singh",
   },
 ];
+
+
 
 export const WHY_POINTS = [
   { text: "One-stop solution for all special events", icon: <Layers size={48} /> },

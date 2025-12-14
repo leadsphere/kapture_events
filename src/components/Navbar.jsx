@@ -85,6 +85,7 @@ export default function Navbar() {
             <button onClick={() => goToSection(SECTIONS.WHY_US)}>Why Us</button>
             <button onClick={() => goToSection(SECTIONS.TESTIMONIALS)}>Testimonials</button>
             <Link to="/contact">Contact</Link>
+            <Link to="/feedback">Add your review</Link>
           </div>
 
           <div className="flex items-center gap-6">
@@ -146,12 +147,13 @@ export default function Navbar() {
               ✕
             </button>
 
-            <div className="flex flex-col items-center gap-8 text-center text-white text-2xl font-medium">
+            <div className="flex flex-col items-center gap-8 text-center text-black dark:text-white text-2xl font-medium">
               <button onClick={() => goToSection(SECTIONS.SERVICES)}>Services</button>
               <button onClick={() => goToSection(SECTIONS.ABOUT)}>About</button>
               <button onClick={() => goToSection(SECTIONS.WHY_US)}>Why Us</button>
               <button onClick={() => goToSection(SECTIONS.TESTIMONIALS)}>Testimonials</button>
               <Link to="/contact" onClick={() => setOpen(false)}>Contact</Link>
+              <Link to="/feedback" onClick={() => setOpen(false)}>Add your review</Link>
             </div>
           </motion.div>
         )}

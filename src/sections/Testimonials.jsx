@@ -3,8 +3,30 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import { motion } from "framer-motion";
 import { COLORS, TESTIMONIALS } from "@/constant";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Testimonials() {
+  const [testimonials, setTestimonials] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch("https://kapturevents.com/getTestimonials.php")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setTestimonials(data);
+        } else {
+          setTestimonials(TESTIMONIALS);
+        }
+      })
+      .catch(() => {
+        setTestimonials(TESTIMONIALS);
+      });
+  }, []);
+
+  if (testimonials.length === 0) return null;
+
   return (
     <section id="testimonials" className="relative py-32 px-6 max-w-7xl mx-auto">
       <motion.h2
@@ -25,7 +47,7 @@ export default function Testimonials() {
         loop
         className="relative z-10"
       >
-        {TESTIMONIALS.map((item, index) => (
+        {testimonials.map((item, index) => (
           <SwiperSlide key={index}>
             <motion.div
               initial={{ opacity: 0, y: 40 }}
@@ -52,6 +74,18 @@ export default function Testimonials() {
           </SwiperSlide>
         ))}
       </Swiper>
+
+      <div className="mt-16 flex justify-center">
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.97 }}
+          onClick={() => navigate("/feedback")}
+          className="px-10 py-4 rounded-xl text-white font-semibold text-lg shadow-lg"
+          style={{ backgroundColor: COLORS.MAGENTA }}
+        >
+          Add Your Review
+        </motion.button>
+      </div>
     </section>
   );
 }
